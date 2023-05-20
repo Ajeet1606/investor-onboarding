@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import UserContext from "./UserContext";
 
 const Dashboard = () => {
 
+    const {loggedInUser, setLoggedInUser} = useContext(UserContext);
+    // console.log(loggedInUser);
     return(
         <>
             <div className="bg-image1"></div>
@@ -22,7 +26,12 @@ const Dashboard = () => {
                 <div className="flex">
                     <div className="w-[20%] py-5 pl-2 flex flex-col items-center">
                         <img className="w-[142px] h-[142px]" src={process.env.PUBLIC_URL + "Ellipse 1.png"} alt="" />
-                        <h3 className="my-2 ">Snigdha Das</h3>
+                        {
+                            loggedInUser && loggedInUser._id ? (
+                                <h3 className="my-2 ">{loggedInUser?.name}</h3>
+                            ):
+                            <h3 className="my-2 ">Snigdha Das</h3>
+                        }
 
                         <button className="my-2 w-full  p-2 rounded bg-green-800 text-white">DashBoard</button>
                         <h3 className="my-2 ">Profile</h3>

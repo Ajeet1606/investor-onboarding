@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import InputControl from "./InputControl";
+import axios from "axios";
+import {useNavigate} from "react-router-dom"
+import UserContext from "./UserContext";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -14,9 +17,12 @@ const Signup = () => {
     agreement: false,
   });
 
+  const {loggedInUser, setLoggedInUser} = useContext(UserContext);
+
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(name + value);
     setUser({
       ...user,
       [name]: value,
@@ -24,7 +30,26 @@ const Signup = () => {
   };
 
   const handleClick = () => {
-    console.log(user);
+    const {name, email, phone, linkedIn, country, city, state, pin, agreement} = user;
+    if(!name || !email || !phone || !linkedIn || !country || !city || !state || !pin || !agreement){
+      alert("Fill every field");
+      return;
+    }
+
+    // console.log(user);
+    axios.post("http://localhost:9000/signup", user)
+    .then((res) => {
+      // console.log(res);
+      if(res.data.user){
+        setLoggedInUser(res.data.user);
+        navigate("/dashboard");
+      }else{
+        alert(res.data.message);
+      }
+      
+    }).catch((err) => {
+      console.log(err);
+    })
   };
 
   return (
