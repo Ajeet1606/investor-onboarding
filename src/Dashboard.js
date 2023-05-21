@@ -3,7 +3,7 @@ import UserContext from "./UserContext";
 
 const Dashboard = () => {
 
-    const {loggedInUser, setLoggedInUser} = useContext(UserContext);
+    const {loggedInUser} = useContext(UserContext);
     // console.log(loggedInUser);
     return(
         <>

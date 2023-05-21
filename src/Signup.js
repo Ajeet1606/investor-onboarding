@@ -17,7 +17,7 @@ const Signup = () => {
     agreement: false,
   });
 
-  const {loggedInUser, setLoggedInUser} = useContext(UserContext);
+  const {setLoggedInUser} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -85,6 +85,7 @@ const Signup = () => {
             <img
               className="w-8 h-9 mx-5"
               src={process.env.PUBLIC_URL + "/name_svg.svg"}
+              alt=""
             />
             <InputControl
               label="Name"
@@ -114,6 +115,7 @@ const Signup = () => {
             <img
               className="w-8 h-9 mx-5"
               src={process.env.PUBLIC_URL + "/phone_svg.svg"}
+              alt=""
             />
             <InputControl
               placeholder="Phone no."
@@ -141,6 +143,7 @@ const Signup = () => {
             <img
               className="w-8 h-9 mx-5"
               src={process.env.PUBLIC_URL + "/country_svg.svg"}
+              alt=""
             />
             <InputControl
               placeholder="Country"
