@@ -5,6 +5,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const config = require('../config')
 
 // configuration
 const app = express()
@@ -13,8 +14,9 @@ app.use(express.urlencoded())
 app.use(cors())
 
 // define database
-
-mongoose.connect("mongodb+srv://ajeetPatel:EkNWRayuzasCXXCN@cluster0.twosh8o.mongodb.net/fyndnxt?retryWrites=true&w=majority", {
+const url = config.mongoURL;
+// console.log(url);
+mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
